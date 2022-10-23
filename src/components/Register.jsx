@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { StyleSheet, Text, View, TextInput, Picker, Button, Modal } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Modal } from 'react-native';
 
 export default function Register() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -19,14 +19,6 @@ export default function Register() {
           <Button title="Hide"  onPress={toggleModal}/>
           <TextInput placeholder="Email"/>
           <TextInput secureTextEntry={true} placeholder="Password"/>
-          <Picker
-            selectedValue={test}
-            onValueChange={currentTest => setTest(currentTest)}>
-            <Picker.Item label="" value=""/>
-            <Picker.Item label="1" value="1"/>
-            <Picker.Item label="2" value="2"/>
-            <Picker.Item label="3" value="3"/>
-          </Picker>
         </View>
       </Modal>
     </View>
