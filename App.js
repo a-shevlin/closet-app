@@ -1,64 +1,51 @@
-import React, {useState} from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { Pressable, Alert, StyleSheet, Text, View, Modal, Button } from 'react-native';
-import Register from './src/components/Register';
-import { clickProps } from 'react-native-web/dist/cjs/modules/forwardedProps';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+import SignInScreen from './src/screens/SignInScreen';
+import Home from './src/screens/Home';
+import { colors } from './src/context/constants';
 
 export default function App() {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isPress, setIsPress] = useState(false);
-  const [count, setCount] = useState(0);
-
-  function toggleModal() {
-    setIsModalVisible(!isModalVisible);
-  };
-
-  function togglePress() {
-    setIsPress(!isPress);
-  }
+  const Stack = createNativeStackNavigator();
 
   return (
-    <View style={styles.container}>
-      <Text>Hello Welcome</Text>
-      <Button title="Account"  onPress={toggleModal}/>
-      <Pressable 
-        style={({ pressed }) => [
-          {
-            color: pressed
-              ? 'red'
-              : 'white'
-          }
-        ]}
-        onPress={togglePress}>
-            {({ pressed }) => (
-              !pressed ? 
-              <Text style={styles.text}>Press to change color</Text>
-              : <Text style={styles.pressed}>Pressed</Text> 
-
-            )}
-      </Pressable>
-      <Modal
-        animationType='slide'
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-        }}
-        visible={isModalVisible}>
-        <Button title="Home"  onPress={toggleModal}/>
-        <Register/>
-      </Modal>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <View style={styles.root}>
+      <Stack.Navigator>
+        <Stack.Screen 
+          name="home" 
+          component={Home} />
+        <Stack.Screen name="signin" component={SignInScreen} />
+        
+      </Stack.Navigator>
+      </View>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  root: {
     flex: 1,
-    backgroundColor: '#aaabbb',
+    backgroundColor: colors.background,
     alignItems: 'center',
-    justifyContent: 'center',
+    padding: 5,
+    paddingTop: 50,
   },
   pressed: {
     color: 'red',
-  }
+  },
+  
 });
+
+
+{/* <Pressable 
+        onPress={togglePress}>
+            {({ pressed }) => (
+              !pressed ? 
+              <Text>Press to change color</Text>
+              : <Text style={styles.pressed}>Pressed</Text> 
+
+            )}
+      </Pressable> */}
