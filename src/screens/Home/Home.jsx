@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
 import Logo from '../../../assets/ads_logo.png';
 import { Image, StyleSheet, Text, View, Modal, Button } from 'react-native';
+import { colors } from '../../context/constants';
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isPress, setIsPress] = useState(false);
   const [count, setCount] = useState(0);
@@ -17,14 +17,25 @@ export default function Home() {
   }
 
   return(
-    <View>
+    <View style={styles.home}>
       <Image source={Logo} style={styles.logo}/>
       <Text>Home Screen Test</Text>
+      <Button 
+        title="To Account"
+        onPress={() => navigation.navigate('Account')}
+      />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  home: {
+    flex: 1,
+    backgroundColor: colors.background,
+    alignItems: 'center',
+    padding: 5,
+    paddingTop: 50,
+  },
   logo: {
     marginTop: 5,
     marginBottom: 5,
