@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-
 import SignInScreen from './src/screens/SignInScreen';
 import Home from './src/screens/Home';
 import { colors } from './src/context/constants';
@@ -12,15 +11,18 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <View style={styles.root}>
-      <Stack.Navigator>
-        <Stack.Screen 
-          name="home" 
-          component={Home} />
-        <Stack.Screen name="signin" component={SignInScreen} />
-        
-      </Stack.Navigator>
-      </View>
+        <Stack.Navigator>
+          <Stack.Screen 
+            name="Home"  
+            component={Home}
+            options={{
+              title: "Welcome"
+            }}
+          />
+          <Stack.Screen 
+            name="Account" 
+            component={SignInScreen}/>
+        </Stack.Navigator>
     </NavigationContainer>
   );
 }
