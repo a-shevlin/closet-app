@@ -1,3 +1,4 @@
+// import { registerRootComponent } from 'expo';
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -26,6 +27,8 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+// registerRootComponent(App)
 
 const styles = StyleSheet.create({
   root: {
